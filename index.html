@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby Hospital - Data Entry</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    color: #111;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    min-height: 100vh;
+    padding: 18px;
+}
+
+.header {
+    text-align: center;
+    border-bottom: 2px solid #000;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 25px;
+}
+
+.header h2 {
+    margin: 5px 0 0;
+    font-size: 18px;
+}
+
+.header p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 14px;
+    margin-bottom: 5px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 17px;
+    border: 1px solid #999;
+    border-radius: 6px;
+    background: white;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.row > div {
+    flex: 1;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 18px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 7px;
+    background: #111;
+    color: white;
+}
+
+button.secondary {
+    background: #555;
+}
+
+.section {
+    margin-top: 25px;
+    padding-top: 10px;
+    border-top: 2px solid #000;
+}
+
+.section-title {
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.print-only {
+    display: none;
+}
+
+@media print {
+
+    body {
+        background: white;
+    }
+
+    .container {
+        max-width: none;
+        padding: 10px;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    input,
+    select,
+    textarea {
+        border: none;
+        border-bottom: 1px solid #999;
+        border-radius: 0;
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    label {
+        font-size: 13px;
+        margin-top: 8px;
+    }
+
+    .header h1 {
+        font-size: 22px;
+    }
+
+    .header h2 {
+        font-size: 16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>BABY HOSPITAL</h1>
+    <h2>Child & Neonatal ICU</h2>
+    <p>Dr Shankargouda S N, MD</p>
+    <p>Patient Data Entry Form</p>
+</div>
+
+<form id="patientForm">
+
+<label>Patient Name</label>
+<input id="name" type="text" autocomplete="off">
+
+<div class="row">
+
+<div>
+<label>Age</label>
+<input id="age" type="number" min="0">
+</div>
+
+<div>
+<label>Age Unit</label>
+<select id="ageUnit">
+<option value="">Select</option>
+<option>Days</option>
+<option>Months</option>
+<option>Years</option>
+</select>
+</div>
+
+</div>
+
+<label>Sex</label>
+<select id="sex">
+<option value="">Select</option>
+<option>Male</option>
+<option>Female</option>
+</select>
+
+<div class="row">
+
+<div>
+<label>Date of Admission</label>
+<input id="admissionDate" type="date">
+</div>
+
+<div>
+<label>Time</label>
+<input id="admissionTime" type="time">
+</div>
+
+</div>
+
+<div class="section">
+
+<div class="section-title">Clinical Examination</div>
+
+<label>Symptoms</label>
+<textarea id="symptoms"></textarea>
+
+<label>ODP</label>
+<textarea id="odp"></textarea>
+
+<label>RS</label>
+<textarea id="rs"></textarea>
+
+<label>CNC</label>
+<textarea id="cnc"></textarea>
+
+<label>PA</label>
+<textarea id="pa"></textarea>
+
+<label>Infection</label>
+<textarea id="infection"></textarea>
+
+<label>Nutrition</label>
+<textarea id="nutrition"></textarea>
+
+<label>Abdomen / Liver / Kidney</label>
+<textarea id="abdomen"></textarea>
+
+</div>
+
+<div class="section">
+
+<div class="section-title">Hospital Details</div>
+
+<label>MRD Number</label>
+<input id="mrd" type="text">
+
+</div>
+
+<div class="no-print">
+
+<button type="button" onclick="printForm()">
+Print Patient Form
+</button>
+
+<button type="button" class="secondary" onclick="clearForm()">
+Clear Form
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+<script>
+
+/* Enter key moves to next field */
+
+const fields = Array.from(
+    document.querySelectorAll(
+        'input, select, textarea'
+    )
+);
+
+fields.forEach((field, index) => {
+
+    field.addEventListener('keydown', function(event) {
+
+        if (event.key === 'Enter') {
+
+            event.preventDefault();
+
+            if (index < fields.length - 1) {
+                fields[index + 1].focus();
+            }
+
+        }
+
+    });
+
+});
+
+
+/* Print */
+
+function printForm() {
+    window.print();
+}
+
+
+/* Clear */
+
+function clearForm() {
+
+    if (confirm("Clear all entered patient information?")) {
+        document.getElementById("patientForm").reset();
+        document.getElementById("name").focus();
+    }
+
+}
+
+
+/* Automatically put today's date */
+
+window.addEventListener("load", function() {
+
+    const today = new Date();
+
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+
+    document.getElementById("admissionDate").value =
+        yyyy + "-" + mm + "-" + dd;
+
+});
+input,
+select,
+textarea {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+textarea {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+</script>
+
+</body>
+</html>
