@@ -1,0 +1,120 @@
+Pediatric Admission Proforma
+Quick bedside entry · autosaves per patient
+
++ New
+Delete
+IDENTIFICATION
+▾
+Name
+MRD / UHID
+Age
+Sex
+M
+F
+Ambiguous
+HISTORY
+▾
+Presenting symptoms
+Onset, Duration, Progression (ODP)
+Past history
+Vaccination history
+Family & contact history
+VITALS
+▾
+SpO2 %
+PR /min
+RR /min
+Temp °C
+BP (mmHg)
+RESPIRATORY DISTRESS
+▾
+SIGNS
+Apnea
+Gasping
+Head bobbing
+Chin tug
+Restless
+Feeble cry
+Cough
+RETRACTIONS
+Nasal flare
+Grunting
+Suprasternal
+Intercostal
+Subcostal
+Infra-axillary
+AUSCULTATION
+Air entry ↓
+Stridor
+Wheeze
+Crepitations
+CVS / PERFUSION
+▾
+Cold periphery
+Pale / mottled
+Prolonged CFT
+Weak pulse volume
+Dehydration
+Raised JVP
+Edema
+Liver enlarged
+Apex shifted
+Abnormal heart sounds
+Murmur
+SENSORIUM / NEURO
+▾
+SENSORIUM
+Normal sleep/wake
+Increased sleep
+Irritable
+Drowsy
+Awake to voice
+Awake to pain only
+EXAM
+Cranial nerve deficit
+Tone abnormal
+DTR abnormal
+Power/strength reduced
+Cerebellar signs
+Meningeal signs
+INFECTION SCREEN
+▾
+Fever
+Rash
+Lymph nodes
+FEEDING
+▾
+Normal
+Reduced
+Fatigue on feeding
+Suck-rest-suck
+On awakening only
+None
+HEPATIC / RENAL
+▾
+Jaundice / liver size
+Urine color
+Kidney findings
+HEMATOLOGY
+▾
+Pallor
+Petechiae
+Purpura
+Active bleed
+Thrombosis
+IMMUNITY / ALLERGY / METABOLIC
+▾
+Notes
+ASSESSMENT & PLAN
+▾
+STATUS
+Critical
+Labile
+Stable
+Ongoing issue
+Predicted course
+Preventive measures
+Plan
+No unsaved changes
+Save
+Export JSON
