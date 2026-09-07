@@ -1,0 +1,21 @@
+{
+  "name": "Baby Hospital - New Case",
+  "short_name": "New Case",
+  "start_url": "./new-case.html",
+  "display": "standalone",
+  "background_color": "#F6F8F6",
+  "theme_color": "#12463F",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

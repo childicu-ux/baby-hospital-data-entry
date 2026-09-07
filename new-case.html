@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Case — Dr. Shankargouda Baby Hospital</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#12463F">
+<style>
+  :root{
+    --ink:#1B2420;
+    --ink-soft:#4A564F;
+    --line:#D8DFD9;
+    --paper:#F6F8F6;
+    --panel:#FFFFFF;
+    --primary:#12463F;
+    --primary-soft:#E4EEEC;
+    --alert:#B0592B;
+    --alert-soft:#F6E6DB;
+    --radius:6px;
+    --font: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:var(--font); background:var(--paper); color:var(--ink);
+    line-height:1.5; padding-bottom:96px;
+  }
+  header{
+    background:var(--primary); color:#fff; padding:18px 20px;
+    display:flex; flex-direction:column; gap:2px;
+  }
+  header .org{font-size:13px; opacity:.8; letter-spacing:.2px;}
+  header h1{font-size:20px; margin:0; font-weight:600;}
+  nav.tabs{
+    display:flex; overflow-x:auto; background:var(--panel);
+    border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5;
+  }
+  nav.tabs button{
+    flex:1; min-width:140px; padding:14px 10px; border:none; background:none;
+    font-family:var(--font); font-size:14px; color:var(--ink-soft); cursor:pointer;
+    border-bottom:3px solid transparent; white-space:nowrap;
+  }
+  nav.tabs button.active{color:var(--primary); border-bottom-color:var(--primary); font-weight:600;}
+  main{max-width:760px; margin:0 auto; padding:20px 16px;}
+  section.panel{display:none;}
+  section.panel.active{display:block; animation:fade .15s ease-in;}
+  @keyframes fade{from{opacity:0} to{opacity:1}}
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px 18px 6px; margin-bottom:16px;
+  }
+  .card h2{font-size:15px; margin:0 0 14px; color:var(--primary); font-weight:600;}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:14px 16px;}
+  .grid .full{grid-column:1 / -1;}
+  @media (max-width:520px){ .grid{grid-template-columns:1fr;} }
+  label{display:block; font-size:12.5px; color:var(--ink-soft); margin-bottom:5px;}
+  label .req{color:var(--alert);}
+  input, select, textarea{
+    width:100%; padding:9px 10px; border:1px solid var(--line); border-radius:var(--radius);
+    font-family:var(--font); font-size:14px; color:var(--ink); background:#fff; margin-bottom:14px;
+  }
+  textarea{resize:vertical; min-height:64px;}
+  input:focus, select:focus, textarea:focus{outline:2px solid var(--primary); outline-offset:1px;}
+  .cert-note{
+    background:var(--alert-soft); border:1px solid #E3BFA4; border-radius:var(--radius);
+    padding:10px 12px; font-size:13px; color:#7A3C1B; margin-bottom:16px;
+  }
+  footer.bar{
+    position:fixed; bottom:0; left:0; right:0; background:var(--panel);
+    border-top:1px solid var(--line); padding:12px 16px; display:flex; gap:10px;
+    justify-content:flex-end; z-index:6;
+  }
+  footer.bar .status{margin-right:auto; font-size:12.5px; color:var(--ink-soft); align-self:center;}
+  button.primary, button.secondary{
+    padding:10px 18px; border-radius:var(--radius); font-family:var(--font);
+    font-size:14px; font-weight:600; cursor:pointer; border:1px solid transparent;
+  }
+  button.primary{background:var(--primary); color:#fff;}
+  button.secondary{background:var(--panel); color:var(--primary); border-color:var(--primary);}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="org">Dr. Shankargouda Baby Hospital — PICU / NICU</span>
+  <h1>New Case</h1>
+</header>
+
+<nav class="tabs">
+  <button class="active" data-tab="demographics">Demographics</button>
+  <button data-tab="certificate">Emergency Certificate</button>
+  <button data-tab="evaluation">Initial Evaluation</button>
+</nav>
+
+<main>
+  <!-- DEMOGRAPHICS -->
+  <section class="panel active" id="demographics">
+    <div class="card">
+      <h2>Patient Identity</h2>
+      <div class="grid">
+        <div><label>UHID <span class="req">*</span></label><input id="uhid" required></div>
+        <div><label>Full name <span class="req">*</span></label><input id="full_name" required></div>
+        <div><label>Date of birth</label><input type="date" id="dob"></div>
+        <div><label>Sex</label>
+          <select id="sex"><option value="">Select</option><option>Male</option><option>Female</option></select>
+        </div>
+        <div><label>Guardian name</label><input id="guardian_name"></div>
+        <div><label>Guardian contact</label><input id="guardian_contact" type="tel"></div>
+        <div class="full"><label>Address</label><textarea id="address"></textarea></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Admission Details</h2>
+      <div class="grid">
+        <div><label>Admission date &amp; time</label><input type="datetime-local" id="admission_datetime"></div>
+        <div><label>Admission type</label>
+          <select id="admission_type"><option value="">Select</option><option>Emergency</option><option>Referred</option><option>OPD to IPD</option></select>
+        </div>
+        <div><label>Referring doctor</label><input id="referring_doctor"></div>
+        <div><label>Bed / Ward</label><input id="bed_ward" placeholder="e.g. NICU-4"></div>
+        <div><label>Scheme</label>
+          <select id="scheme"><option value="">Select</option><option>PMJAY</option><option>SAST — Arogya Karnataka</option><option>Private</option><option>Other</option></select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMERGENCY CERTIFICATE -->
+  <section class="panel" id="certificate">
+    <div class="cert-note">This certificate is a legal record of the patient's condition at arrival. Enter findings exactly as observed.</div>
+    <div class="card">
+      <h2>Certifying Details</h2>
+      <div class="grid">
+        <div><label>Certifying doctor <span class="req">*</span></label><input id="certifying_doctor"></div>
+        <div><label>Certificate date &amp; time</label><input type="datetime-local" id="certificate_datetime"></div>
+        <div><label>Mode of arrival</label>
+          <select id="mode_of_arrival"><option value="">Select</option><option>Ambulance</option><option>Self</option><option>Referred</option></select>
+        </div>
+        <div class="full"><label>Condition on arrival</label><textarea id="condition_on_arrival"></textarea></div>
+        <div class="full"><label>Provisional diagnosis</label><textarea id="cert_provisional_diagnosis"></textarea></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INITIAL EVALUATION -->
+  <section class="panel" id="evaluation">
+    <div class="card">
+      <h2>Clinical Evaluation</h2>
+      <div class="grid">
+        <div><label>Evaluating clinician <span class="req">*</span></label><input id="evaluating_clinician"></div>
+        <div><label>Evaluation date &amp; time</label><input type="datetime-local" id="evaluation_datetime"></div>
+        <div class="full"><label>Chief complaint</label><textarea id="chief_complaint"></textarea></div>
+        <div class="full"><label>History of present illness</label><textarea id="hpi"></textarea></div>
+        <div class="full"><label>Past medical history</label><textarea id="past_history"></textarea></div>
+        <div class="full"><label>Birth history (gestational age, birth weight, APGAR — NICU)</label><textarea id="birth_history"></textarea></div>
+        <div class="full"><label>Examination findings</label><textarea id="exam_findings"></textarea></div>
+        <div class="full"><label>Provisional diagnosis</label><textarea id="eval_provisional_diagnosis"></textarea></div>
+        <div class="full"><label>Initial orders</label><textarea id="initial_orders"></textarea></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bar">
+  <span class="status" id="status">Not saved yet</span>
+  <button class="secondary" id="printBtn">Print / PDF</button>
+  <button class="primary" id="saveBtn">Save case</button>
+</footer>
+
+<script>
+  // Tab switching
+  document.querySelectorAll('nav.tabs button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('section.panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  const FIELD_IDS = [
+    'uhid','full_name','dob','sex','guardian_name','guardian_contact','address',
+    'admission_datetime','admission_type','referring_doctor','bed_ward','scheme',
+    'certifying_doctor','certificate_datetime','mode_of_arrival','condition_on_arrival','cert_provisional_diagnosis',
+    'evaluating_clinician','evaluation_datetime','chief_complaint','hpi','past_history','birth_history',
+    'exam_findings','eval_provisional_diagnosis','initial_orders'
+  ];
+
+  function currentCaseKey(){
+    const uhid = document.getElementById('uhid').value.trim();
+    return uhid ? ('case:' + uhid) : null;
+  }
+
+  async function saveCase(){
+    const key = currentCaseKey();
+    const status = document.getElementById('status');
+    if(!key){ status.textContent = 'Enter UHID before saving'; return; }
+    const data = {};
+    FIELD_IDS.forEach(id => data[id] = document.getElementById(id).value);
+    data.saved_at = new Date().toISOString();
+    try{
+      if(window.storage){
+        await window.storage.set(key, JSON.stringify(data));
+      } else {
+        localStorage.setItem(key, JSON.stringify(data));
+      }
+      status.textContent = 'Saved ' + new Date().toLocaleTimeString();
+    }catch(e){
+      status.textContent = 'Save failed — try again';
+    }
+  }
+
+  document.getElementById('saveBtn').addEventListener('click', saveCase);
+  document.getElementById('printBtn').addEventListener('click', ()=>window.print());
+
+  // Autosave every 20s if UHID present
+  setInterval(()=>{ if(currentCaseKey()) saveCase(); }, 20000);
+
+  // Register service worker for installability
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  }
+</script>
+</body>
+</html>
